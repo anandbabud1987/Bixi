@@ -3,5 +3,7 @@ export default {
   username:"Nom d'utilisateur",
   password:'Mot de passe',
   home:'Maison',
-  register:'Registre'
+  register:'Registre',
+  settings:"Paramètres",
+  signup:"S'inscrire"
 };
