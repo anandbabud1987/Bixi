@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import I18n from 'react-native-i18n';
 
 
+
 class Login extends React.Component{
 
   constructor(props) {
@@ -23,9 +24,14 @@ class Login extends React.Component{
  _signup(){
    Actions.signup();
  }
+ _choose_language(){
+    Actions.language();
+ }
  _changeLanguage(localeId){
 
  }
+
+
   render(){
     return(
       <View>
@@ -33,8 +39,8 @@ class Login extends React.Component{
            <FormInput onChangeText={(username) =>
            this.setState({username})}
            value={this.state.username}
-           placeholder="Email or Phone number"/>
-           <FormValidationMessage>Please enter your email or phone number</FormValidationMessage>
+           placeholder={I18n.t('mobile_no',{locale: I18n.defaultLocale})}/>
+           <FormValidationMessage>{I18n.t('mobile_no', {locale: I18n.defaultLocale})}</FormValidationMessage>
            <Divider style={{ height: "7%" }} />
            <FormInput onChangeText={(password) =>
            this.setState({password})} secureTextEntry={true}
@@ -48,7 +54,7 @@ class Login extends React.Component{
               large
               icon={{name: 'sign-in', type: 'font-awesome'}}
               onPress={() => this._login(this)}
-              title='Sign-In'
+              title={I18n.t('login', {locale: I18n.defaultLocale})}
               backgroundColor="green"
               raised
               borderRadius={7}
@@ -57,13 +63,25 @@ class Login extends React.Component{
            <Divider style={{ height: "7%" }} />
            <Button
               onPress={() => this._signup(this)}
-           title="Signup"
+           title={I18n.t('signup', {locale: I18n.defaultLocale})}
            large
            icon={{name: 'user-plus', type: 'font-awesome'}}
            backgroundColor="green"
            raised
            borderRadius={7}
            accessibilityLabel="Signup"
+           />
+
+           <Divider style={{ height: "7%" }} />
+           <Button
+              onPress={() => this._choose_language(this)}
+           title={I18n.t('language', {locale: I18n.defaultLocale})}
+           large
+           icon={{name: 'language', type: 'font-awesome'}}
+           backgroundColor="green"
+           raised
+           borderRadius={7}
+           accessibilityLabel="Language"
            />
         </View>
     );

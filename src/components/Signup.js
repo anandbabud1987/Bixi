@@ -1,12 +1,23 @@
 import React from 'react';
-import {Text,TextInput,View,StyleSheet,Button} from 'react-native';
+import {Text,TextInput,View,StyleSheet} from 'react-native';
+import { FormLabel, FormInput,Button ,FormValidationMessage,Divider} from 'react-native-elements';
 import {Actions} from 'react-native-router-flux';
+import I18n from 'react-native-i18n';
+import CommonConstants from '../store/CommonConstants';
+const commonConstants=CommonConstants;
 
 class Signup extends React.Component{
   constructor(props) {
    super(props);
    this.state = {
-     telephone: ''
+     username: '',
+     password:'',
+     first_name:'',
+     last_name:'',
+    email:'',
+    country_cd:commonConstants.COUNTRY_CD,
+    phone_number:''
+
     };
  }
 
@@ -17,46 +28,51 @@ class Signup extends React.Component{
   render(){
     return(
       <View>
-      <TextInput
-        style={{height: 80, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(telephone) => this.setState({telephone})}
-        multiline={false}
-        placeholder="Phone Number"
-        value={this.state.telephone}
-      />
-      <Button
-      onPress={() => this._sendCode(this)}
-        title="Send Verification Code"
-        color="#841584"
-        accessibilityLabel="Send Verification Code"
-      />
-      </View>
+
+
+            <Divider style={{ height: "7%" }} />
+             <FormLabel>{I18n.t('first_name',{locale: I18n.defaultLocale})}</FormLabel>
+           <FormInput onChangeText={(first_name) =>
+           this.setState({first_name})}
+           value={this.state.first_name}
+        />
+
+           <Divider style={{ height: "7%" }} />
+            <FormLabel>{I18n.t('last_name',{locale: I18n.defaultLocale})}</FormLabel>
+           <FormInput onChangeText={(last_name) =>
+           this.setState({last_name})}
+           value={this.state.last_name}
+          />
+
+           <Divider style={{ height: "7%" }} />
+           <FormLabel>{I18n.t('mobile_no',{locale: I18n.defaultLocale})}</FormLabel>
+           <View style={{flex: 1, flexDirection: 'row'}}>
+           <FormInput onChangeText={(country_cd) =>
+           this.setState({country_cd})}
+           value={this.state.country_cd}
+          />
+               <Divider style={{ height: "7%" }} />
+           <FormInput onChangeText={(phone_number) =>
+           this.setState({phone_number})}
+           value={this.state.phone_number}
+        />
+           </View>
+           <Divider style={{ height: "7%" }} />
+
+
+           <Button
+              onPress={() => this._signup(this)}
+           title="Signup"
+           large
+           icon={{name: 'user-plus', type: 'font-awesome'}}
+           backgroundColor="green"
+           raised
+           borderRadius={7}
+
+           />
+        </View>
     );
   }
 
 }
 export default Signup;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  title:{
-    textAlign:'center',
-    marginBottom:5,
-    color:'#DAF7A6'
-  }
-});
