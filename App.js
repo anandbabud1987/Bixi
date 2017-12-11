@@ -10,6 +10,7 @@ import {
 import {Router,Scene,Stack} from 'react-native-router-flux';
 
 
+
 import Footer from './src/components/Footer';
 import Home from './src/components/Home';
 import Login from './src/components/Login';
@@ -22,9 +23,10 @@ import I18n from 'react-native-i18n';
 import en from './src/i18n/en';
 import fr from './src/i18n/fr';
 import ta from './src/i18n/ta';
+import { Root } from "native-base";
+
 
 import { getLanguages } from 'react-native-i18n';
-
 
 
 const instructions = Platform.select({
@@ -42,6 +44,8 @@ I18n.fallbacks = true;
 I18n.defaultLocale = I18n.defaultLocale ;
 I18n.locale = I18n.defaultLocale ;
 
+
+
 I18n.translations = {
   en,
   fr,
@@ -49,11 +53,11 @@ I18n.translations = {
 }
 
 class App extends Component<{}> {
+
   render() {
     var defaultLocale=I18n.defaultLocale;
-
     return (
-
+      <Root>
       <Router>
       <Stack key="root">
         <Scene key="login" style={styles.title} component={Login} initial={true} title={I18n.t('login', {locale: defaultLocale})}/>
@@ -65,6 +69,8 @@ class App extends Component<{}> {
         <Scene key="language" style={styles.title} component={Language} title={I18n.t('language',{locale: defaultLocale})}/>
       </Stack>
     </Router>
+      </Root>
+
 
     );
   }
