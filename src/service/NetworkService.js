@@ -1,6 +1,6 @@
 import RequestService from './RequestService';
 
-const BASE_URL = "http://192.168.2.24:2017/bixi-api";
+const BASE_URL = "http://XXXXX:2017/bixi-api";
 const API_KEY = "?api-key=GET-YOUR-FREE-API-KEY:)";
 
 class NetworkService {
