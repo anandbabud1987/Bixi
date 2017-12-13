@@ -3,9 +3,10 @@ import {Text,View} from 'react-native';
 
 class Register extends React.Component{
   render(){
+    const { params } = this.props.navigation.state;
     return(
       <View>
-        <Text>Register</Text>
+        <Text>Register{params.username}</Text>
       </View>
     );
   }
